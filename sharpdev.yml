@@ -1,0 +1,30 @@
+version: 1
+
+envfile: .env
+
+scripts:
+  setup: |
+    sudo apt update -y
+    sudo apt install -y python3.8-venv ffmpeg libsm6 libxext6
+    python3.8 -m venv .venv
+    . .venv/bin/activate && pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+    . .venv/bin/activate && pip3 install -r requirements.txt
+    . .venv/bin/activate && pip3 install git+https://github.com/openai/CLIP.git
+
+    # extras
+    . .venv/bin/activate && pip3 install
+
+  test: |
+    sudo chmod +x ./scripts/test.sh
+    ./scripts/test.sh
+
+  test-py: |
+    . .venv/bin/activate && python3.8 ./scripts/test.py
+
+  unzip: |
+    sudo apt install -y unzip
+    unzip -o ./archive.zip -d ./archive
+    rm ./archive.zip
+
+  shape: |
+    . .venv/bin/activate && python3.8 ./scripts/shape_functions.py
