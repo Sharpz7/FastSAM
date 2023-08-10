@@ -1,5 +1,8 @@
 version: 1
 
+# https://townsean.github.io/canvas-pixel-color-counter/
+# For verifying you didn't break anything
+
 envfile: .env
 
 scripts:
@@ -12,7 +15,7 @@ scripts:
     . .venv/bin/activate && pip3 install git+https://github.com/openai/CLIP.git
 
     # extras
-    . .venv/bin/activate && pip3 install
+    . .venv/bin/activate && pip3 install scikit-image
 
   test: |
     sudo chmod +x ./scripts/test.sh
