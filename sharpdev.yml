@@ -21,13 +21,13 @@ scripts:
     sudo chmod +x ./scripts/test.sh
     ./scripts/test.sh
 
-  test-py: |
-    . .venv/bin/activate && python3.8 ./scripts/test.py
+  generate: |
+    . .venv/bin/activate && python3.8 ./scripts/generate.py
 
   unzip: |
     sudo apt install -y unzip
     unzip -o ./archive.zip -d ./archive
     rm ./archive.zip
 
-  shape: |
-    . .venv/bin/activate && python3.8 ./scripts/shape_functions.py
+  graphs: |
+    . .venv/bin/activate && python3.8 ./scripts/graphs.py

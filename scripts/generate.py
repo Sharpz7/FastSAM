@@ -27,9 +27,9 @@ def create_images():
             image_path,
             device=DEVICE,
             retina_masks=False,
-            imgsz=640,
-            conf=0.2,
-            iou=0.7,
+            imgsz=1024,
+            conf=0.1,
+            iou=0.1,
         )
         prompt_process = FastSAMPrompt(image_path, everything_results, device=DEVICE)
 
@@ -52,6 +52,7 @@ def create_images():
             mask = layer > 0  # Non-zero pixels
             final_image[mask] = color  # Replace with the corresponding color
 
+        image = image.replace(".jpg", ".png")
         # Save as png
         plt.imsave(f"./output/{image}", final_image)
 
