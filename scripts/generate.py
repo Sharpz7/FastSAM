@@ -12,7 +12,15 @@ sys.path.append(root_dir)
 from fastsam import FastSAM, FastSAMPrompt
 
 model = FastSAM("./weights/FastSAM.pt")
-DEVICE = "cpu"
+DEVICE = torch.device(
+    "cuda"
+    if torch.cuda.is_available()
+    else "mps"
+    if torch.backends.mps.is_available()
+    else None
+)
+# DEVICE =  0
+# DEVICE = "cpu"
 
 
 def create_images():
@@ -34,7 +42,7 @@ def create_images():
         prompt_process = FastSAMPrompt(image_path, everything_results, device=DEVICE)
 
         # everything prompt
-        ann = prompt_process.everything_prompt()
+        ann = prompt_process.everything_prompt().cpu()
 
         # Normalize and convert to numpy
         normalized_layers = [ann[i] / ann[i].max() for i in range(ann.shape[0])]
