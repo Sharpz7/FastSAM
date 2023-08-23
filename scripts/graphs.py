@@ -91,7 +91,7 @@ def plot_histogram(results_list, colors_list, filename, func_name, num_bins=20):
     if not os.path.exists("plots"):
         os.makedirs("plots")
 
-    plt.savefig(f"plots/{func_name}-{filename}.png")
+    plt.savefig(f"plots/{func_name}-{filename}")
     print(f"Saved plot for {func_name} function for {filename}")
     plt.close()
 

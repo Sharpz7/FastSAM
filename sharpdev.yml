@@ -46,7 +46,7 @@ scripts:
     ./scripts/test.sh
 
   generate: |
-    . .venv/bin/activate && python3.8 ./scripts/generate.py
+    . .venv/bin/activate && python ./scripts/generate.py
 
   unzip: |
     sudo apt install -y unzip
@@ -54,9 +54,9 @@ scripts:
     rm ./archive.zip
 
   graphs: |
-    . .venv/bin/activate && python3.8 ./scripts/graphs.py
+    . .venv/bin/activate && python ./scripts/graphs.py
 
   test-gpu: |
     nvidia-smi
-    python3 -c "import torch; [print(torch.cuda.get_device_name(i)) for i in range(torch.cuda.device_count())]"
-    python3 -c "import torch; print('CUDA available' if torch.cuda.is_available() else 'CUDA not available')"
+    . .venv/bin/activate && python3 -c "import torch; [print(torch.cuda.get_device_name(i)) for i in range(torch.cuda.device_count())]"
+    . .venv/bin/activate && python3 -c "import torch; print('CUDA available' if torch.cuda.is_available() else 'CUDA not available')"
